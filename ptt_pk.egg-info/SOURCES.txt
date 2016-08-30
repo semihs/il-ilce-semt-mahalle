@@ -1,8 +1,0 @@
-setup.py
-ptt_pk.egg-info/PKG-INFO
-ptt_pk.egg-info/SOURCES.txt
-ptt_pk.egg-info/dependency_links.txt
-ptt_pk.egg-info/requires.txt
-ptt_pk.egg-info/top_level.txt
-src/ptt-pk/__init__.py
-src/ptt-pk/fetch.py
