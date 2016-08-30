@@ -77,15 +77,9 @@ try:
                                     cursor.execute(sql, (neighborhood_id, part_name, part_slug, regions[city][district][neighborhood][part]))
                                     connection.commit()
                                     part_id = cursor.lastrowid
+                                    postal_code = regions[city][district][neighborhood][part]
 
                                     print city_name + ' / ' + district_name + ' / ' + neighborhood_name + ' / ' + part_name + ' - ' + str(postal_code)
 
-    '''
-    with connection.cursor() as cursor:
-        sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s);"
-        cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
-
-    connection.commit()
-    '''
 finally:
     connection.close()
