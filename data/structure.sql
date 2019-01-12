@@ -62,7 +62,8 @@ CREATE TABLE `part` (
   `id` int(11) NOT NULL,
   `neighborhood_id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `slug` varchar(210) NOT NULL
+  `slug` varchar(210) NOT NULL,
+  `postal_code` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
