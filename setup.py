@@ -9,7 +9,7 @@ config = {
     'url': 'github.com/semihs/ptt-pk',
     'author_email': 'semihsari@gmail.com',
     'version': '0.1',
-    'install_requires': ['pymysql', 'openpyxl', 'python-slugify'],
+    'install_requires': ['pymysql', 'openpyxl', 'python-slugify', 'cryptography'],
     'packages': ['src/ptt-pk'],
     'scripts': [],
     'name': 'ptt-pk'

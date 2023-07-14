@@ -5,13 +5,13 @@ from slugify import slugify
 connection = pymysql.connect(host='localhost',
                              user='root',
                              password='11/*aa',
-                             db='pttpk',
+                             db='pttdata',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
 cursor = connection.cursor()
 
 try:
-    wb = load_workbook('data/pk_list_29.04.2016.xlsx')
+    wb = load_workbook('data/pk_20220810.xlsx')
     ws = wb.active
 
     regions = {}
@@ -38,8 +38,9 @@ try:
 
         regions[city][district][neighborhood][part] = postal_code
 
-    for city in regions.iterkeys():
-        city_name = city.title()
+    for city, v1 in regions.items():
+        print(city)
+        city_name = city.strip()
         city_slug = slugify(city_name)
 
         with connection.cursor() as cursor:
@@ -48,8 +49,8 @@ try:
             connection.commit()
             city_id = cursor.lastrowid
 
-            for district in regions[city].iterkeys():
-                district_name = district.title()
+            for district, v2 in regions[city].items():
+                district_name = district.strip()
                 district_slug = slugify(district_name)
 
                 with connection.cursor() as cursor:
@@ -58,8 +59,8 @@ try:
                     connection.commit()
                     district_id = cursor.lastrowid
 
-                    for neighborhood in regions[city][district].iterkeys():
-                        neighborhood_name = neighborhood.title()
+                    for neighborhood, v3 in regions[city][district].items():
+                        neighborhood_name = neighborhood.strip()
                         neighborhood_slug = slugify(neighborhood_name)
 
                         with connection.cursor() as cursor:
@@ -68,8 +69,8 @@ try:
                             connection.commit()
                             neighborhood_id = cursor.lastrowid
 
-                            for part in regions[city][district][neighborhood].iterkeys():
-                                part_name = part.title()
+                            for part, v4 in regions[city][district][neighborhood].items():
+                                part_name = part.strip()
                                 part_slug = slugify(part_name)
 
                                 with connection.cursor() as cursor:
@@ -79,7 +80,9 @@ try:
                                     part_id = cursor.lastrowid
                                     postal_code = regions[city][district][neighborhood][part]
 
-                                    print city_name + ' / ' + district_name + ' / ' + neighborhood_name + ' / ' + part_name + ' - ' + str(postal_code)
+                                    print(
+                                        city_name + ' / ' + district_name + ' / ' + neighborhood_name + ' / ' + part_name + ' - ' + str(
+                                            postal_code))
 
 finally:
     connection.close()
